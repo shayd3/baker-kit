@@ -2,8 +2,21 @@ import React from 'react';
 import { Grid, TextField }  from '@mui/material'
 import { spacing } from '@mui/system';
 
+type CalculatorState = { value: string }
+
 // (weight of ingredient / weight of flour) x 100 = baker’s percent
-class Calculator extends React.Component {
+class Calculator extends React.Component<{}, CalculatorState> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            value: ''
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(event: any) {
+        this.setState({value: event.target.value});
+    }
     // calculateWeight(ingredientWeight: Number, flourWeight: Number) {
 
     // }
@@ -23,8 +36,12 @@ class Calculator extends React.Component {
                     id="calc-flour" 
                     label="Flour (g)" 
                     variant="outlined"
+                    onChange={this.handleChange}
                     />
                 </Grid>
+                <div>
+                    {this.state.value}
+                </div>
                 <Grid item sx={{my: .5}}>
                     <TextField 
                     id="calc-water" 
