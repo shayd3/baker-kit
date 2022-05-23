@@ -18,9 +18,6 @@ class Calculator extends React.Component<{}, CalculatorState> {
     handleChange(event: any) {
         this.setState({value: event.target.value});
     }
-    // calculateWeight(ingredientWeight: Number, flourWeight: Number) {
-
-    // }
 
     render() {
         return (
@@ -43,7 +40,7 @@ class Calculator extends React.Component<{}, CalculatorState> {
                 </Grid>
 
                 <Ingredient
-                    name="Water"
+                    name="water"
                 />
             </Grid>
         )

@@ -5,9 +5,34 @@ type IngredientProps = {
     name: string
 }
 
-class Ingredient extends React.Component<IngredientProps, {}> {
+type IngredientState = {
+    percentage: number,
+    weight: number
+}
+
+class Ingredient extends React.Component<IngredientProps, IngredientState> {
     constructor(props: any) {
         super(props);
+        this.state = {
+            percentage: 0,
+            weight: 0
+        }
+        this.handleWeightChange = this.handleWeightChange.bind(this);
+        this.handlePercentChange = this.handlePercentChange.bind(this);
+    }
+
+    handleWeightChange(event: any) {
+        console.log(event)
+        this.setState({
+            weight: event.target.value
+        })
+    }
+
+    handlePercentChange(event: any) {
+        console.log(event)
+        this.setState({
+            percentage: event.target.value
+        })
     }
 
     render() {
@@ -22,16 +47,20 @@ class Ingredient extends React.Component<IngredientProps, {}> {
                     sx={{my: .5}}
                 >
                     <TextField
-                        id="calc-water-percentage"
-                        label={this.props.name + " (%)"}
+                        id={'calc-'+this.props.name.toLowerCase()+'-percentage'}
+                        label={this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1) + " (%)"}
                         variant="outlined"
-                        sx = {{mx: .2}}
+                        sx = {{mx: .2, my: .2}}
+                        onChange={this.handlePercentChange}
+                        value={this.state.percentage}
                     />
                     <TextField
-                        id="calc-water-weight"
-                        label={this.props.name + " (g)"}
+                        id={'calc-'+this.props.name.toLowerCase()+'-weight'}
+                        label={this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1) + " (g)"}
                         variant="outlined"
-                        sx = {{mx: .2}}
+                        sx = {{mx: .2, my: .2}}
+                        onChange={this.handleWeightChange}
+                        value={this.state.weight}
                     />
                 </Grid>
             </Grid>
